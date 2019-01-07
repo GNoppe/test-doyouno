@@ -1,0 +1,26 @@
+import java.math.BigInteger;
+
+public class TestunHash{
+
+public static void main(String[] args){
+    System.out.println(unhash("24682779393128", 8));
+}
+
+
+
+    public static String  unhash(String d, int length) {
+        String letters = "acdegilmnoprstuw";
+        String ret = "";
+        BigInteger BiBoucle = new BigInteger (d);
+        BigInteger BiReste = new BigInteger("0");
+        BigInteger BiBase = new BigInteger("37");
+        int Cpt = 0;
+        do  {
+            Cpt++;
+            BigInteger bi[] = BiBoucle.divideAndRemainder(BiBase);
+            BiBoucle = bi[0];
+            ret = Character.toString(letters.charAt(bi[1].intValue()))+ ret;
+        } while (Cpt<length);
+        return ret;
+    }
+}
